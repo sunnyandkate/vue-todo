@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>vue js example</title>
+    <script src="https://unpkg.com/vue@3.0.3"></script>
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+<link href="https://fonts.googleapis.com/css2?family=Kiwi+Maru&display=swap" rel="stylesheet"> 
+    <link rel="stylesheet" href="styles.css" type="text/css">
+</head>
+<body>
+    
+    <div id="app">
+       
+        <header>
+
+            <nav>
+                <div class="flex-container">
+                    <div class="logo"><img src="palmtree.jpg" alt="logo"></div>
+                    <div @click="toggleMenu" class="toggle-btn" :class="{ openMobileMenu: showMenu }">
+
+                        <span></span>
+                        <span></span>
+                        <span></span>
+
+                    </div>
+                  
+                 
+                <ul class="menu">
+                    <li v-for="item in menuItems"><a :href="item.url">{{ item.text }}</a></li>
+                   
+                </ul>
+            </div>
+                <ul v-if="showMenu" class="mobile-menu">
+                    <li v-for="item in menuItems"><a :href="item.url">{{ item.text }}</a></li>
+                   
+                </ul>
+               
+            </nav>
+        </header>
+        <div class="close-side-menu" :class="{ openSide: sideMenu }">
+            <button @click="openSideMenu" ref="openBtn">{{ openButton }}</button>
+            <div class="side-menu" v-if="sideMenu">
+                <p>choose your text color</p>
+                <button class="pink" @click="pink">pink</button>
+                <button class="blue" @click="blue">blue</button>
+                <button class="green" @click="green">green</button>
+                <button class="orange" @click="orange">orange</button>
+                <p>choose your background color</p>
+                <button class="bgPink" @click="bgPink">pink</button>
+                <button class="bgBlue" @click="bgBlue">blue</button>
+                <button class="bgGreen" @click="bgGreen">green</button>
+                <button class="bgOrange" @click="bgOrange">orange</button>
+
+
+
+
+            </div>
+        </div>
+        <div class="main-content">
+           
+
+            <p id="about">Add your Todos. On the sidemenu you can change the colors</p>
+          
+            <div class="todo-list" v-bind:style="{ color: textColor, backgroundColor: bgColor }">
+                <h3>Todo List</h3>
+                <input v-model="newTodo" placeholder="add your todo">
+                <button @click="addTodo" class="add-btn">Add</button>
+                <ul class="todo-container">
+                    <li v-for="todo in todos">{{ todo.text }}
+
+                        <button @click="remove(todoItem)">remove</button>
+
+                    </li>
+                </ul>
+           </div>
+            
+
+        </div>
+        <footer>
+            <div id="contact">
+                <p><a href="mailto:info@sunnyandkate.com">info@sunnyandkate.com</a></p>
+            </div>
+
+        </footer>
+
+
+
+
+    </div>
+    <script src="app.js"></script>
+</body>
+</html>
